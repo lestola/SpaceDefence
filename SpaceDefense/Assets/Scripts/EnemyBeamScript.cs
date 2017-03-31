@@ -6,11 +6,19 @@ public class EnemyBeamScript : MonoBehaviour
 {
     float timer = 0;
     SpriteRenderer sr;
-    public bool IsShooting = false;
+
+    bool IsShooting = false;
+    bool hasShot = false;
+
+    // turhia
+    int Zhelp;
+    float zAkseli;
 
     // Use this for initialization
     void Start()
     {
+        IsShooting = false;
+        hasShot = false;
         sr = GetComponent<SpriteRenderer>();
     }
 
@@ -20,7 +28,7 @@ public class EnemyBeamScript : MonoBehaviour
         {
             timer = timer + 1* Time.deltaTime;
         }
-        if (timer > 1)
+        if (timer > 20.5)
         {
             IsShooting = false;
         }
@@ -31,9 +39,31 @@ public class EnemyBeamScript : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if ((other.gameObject.tag == "Player")&&(hasShot == false))
         {
             IsShooting = true;
         }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            IsShooting = false;
+        }
+    }
+
+    void StartTurning() //ei toimi 
+    {
+        Zhelp=Zhelp+2;
+        if(gameObject.name == "LeftBeam")
+        { 
+            zAkseli = 1*Zhelp;
+        }
+        else if (gameObject.name == "RightBeam") // +X -Y
+        { 
+            zAkseli = transform.rotation.z - 1 * Zhelp;
+            transform.localPosition = new Vector3(transform.localPosition.x+0.1f, transform.localPosition.y-0.1f, transform.localPosition.z);
+        }
+        transform.rotation = Quaternion.Euler(0, 0, zAkseli);
     }
 }

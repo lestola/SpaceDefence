@@ -31,9 +31,11 @@ public class EnemyScript : MonoBehaviour {
             rb.AddForce((transform.up * speed), ForceMode2D.Impulse); //add force to object to make it fly forward
         }
     }
-    void Update ()
+
+    //turhaa koska tapahtuu jo toisessa skriptissä
+    /*void Update ()
     {
-        /*if (Vector2.Distance(Player1.transform.position, transform.position) > 5)
+        if (Vector2.Distance(Player1.transform.position, transform.position) > 5)
         {
             rightBeam.gameObject.SetActive(false);
             leftBeam.gameObject.SetActive(false);
@@ -43,8 +45,9 @@ public class EnemyScript : MonoBehaviour {
             rightBeam.gameObject.SetActive(true);
             leftBeam.gameObject.SetActive(true);
             hasShot = true;
-        }*/
-    }
+        }
+    }*/
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Border")
