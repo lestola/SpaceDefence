@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/Maps/defaultlevel.unity
+  isLoaded: 1
+  isActive: 1
