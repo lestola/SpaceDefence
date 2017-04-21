@@ -42,6 +42,7 @@ public class EnemyBeamScript : MonoBehaviour
         if ((other.gameObject.tag == "Player")&&(hasShot == false))
         {
             IsShooting = true;
+            hasShot = true;
         }
     }
     void OnTriggerExit2D(Collider2D other)

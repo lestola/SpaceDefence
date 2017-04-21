@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour {
     
-    public int wave;
+    int wave;
     int waveEnemies = 3; // enemies at the start of wave
     public int remainingEnemies = 1; // enemies remaining unspawned
     public int enemiesCurrently = 0; //enemies currently on stage
     int randomNro;
-    public float spawnDelay;
+    float spawnDelay;
+    float spawnDelayDefault = 2;
     public bool startNextWave = true;
 
     public GameObject enemy1;
@@ -23,20 +24,25 @@ public class EnemySpawner : MonoBehaviour {
     public GameObject Spawner7;
     public GameObject Spawner8;
 
+    GameObject Setter;
+
     // Use this for initialization
     void Start () {
-        wave = 1;
+        Setter = GameObject.Find("Setter");
+        //wave = 1;
 	}
 	void nextWave()
-    { 
-        wave++;
+    {
+        Setter.GetComponent<SetterScript>().waveNumber++;
+        wave = Setter.GetComponent<SetterScript>().waveNumber;
         print("Wave number "+wave);
-        waveEnemies = wave * 3;
+        waveEnemies = wave * Setter.GetComponent<SetterScript>().enemiesPerWave;
         remainingEnemies = waveEnemies;
     }
 	// Update is called once per frame
 	void Update ()
     {
+        spawnDelayDefault = Setter.GetComponent<SetterScript>().enemySpawnDelay;
         spawnDelay = spawnDelay - 0.1f;
         if ((spawnDelay < 0)&&(remainingEnemies>0))
         {
@@ -75,7 +81,7 @@ public class EnemySpawner : MonoBehaviour {
             {
                 Instantiate(enemy1, new Vector2(Spawner8.transform.position.x, Spawner8.transform.position.y), Spawner8.transform.rotation);
             }
-        spawnDelay = 10;
+        spawnDelay = spawnDelayDefault;
         }
         if ((remainingEnemies <= 0)&&(enemiesCurrently <= 0))
         {

@@ -13,4 +13,9 @@ public class Spaceshipscript : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    void OnGUI()
+    {
+        GUI.Box(new Rect(5, 5, 0, 0), "This is a box");
+    }
 }
