@@ -15,7 +15,7 @@ public class EnemyScript : MonoBehaviour {
     GameObject Spawner;
     //GameObject Player1;
 
-    public GameObject Setter;
+    GameObject Setter;
 
 
     // Use this for initialization

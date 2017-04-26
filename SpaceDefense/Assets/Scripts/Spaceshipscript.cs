@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Spaceshipscript : MonoBehaviour {
 
+    public GameObject shopWindow;
+    bool shopOpen = false;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -11,11 +14,7 @@ public class Spaceshipscript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        //if (shopOpen == false && shopWindow.transform.position.y > -11)
+            //shopWindow.transform.Translate(new Vector3(0, Time.deltaTime * -5f, 0));
 	}
-
-    void OnGUI()
-    {
-        GUI.Box(new Rect(5, 5, 0, 0), "This is a box");
-    }
 }
