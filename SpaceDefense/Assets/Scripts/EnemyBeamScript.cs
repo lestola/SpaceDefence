@@ -10,6 +10,8 @@ public class EnemyBeamScript : MonoBehaviour
     bool IsShooting = false;
     bool hasShot = false;
 
+    GameObject Player;
+
     // turhia
     int Zhelp;
     float zAkseli;
@@ -17,6 +19,7 @@ public class EnemyBeamScript : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        Player = GameObject.Find("Player");
         IsShooting = false;
         hasShot = false;
         sr = GetComponent<SpriteRenderer>();
@@ -43,12 +46,15 @@ public class EnemyBeamScript : MonoBehaviour
         {
             IsShooting = true;
             hasShot = true;
+            Player.GetComponent<shieldScript>().reduceShield();
+
         }
     }
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "Player")
         {
+            
             IsShooting = false;
         }
     }
